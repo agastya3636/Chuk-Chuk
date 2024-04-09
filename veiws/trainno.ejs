@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNR Search Result</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            height: max-content;
+        }
+        .logo {
+            font-size: 30px;
+            font-weight: 700;
+            color: black;
+            text-transform: uppercase;
+            cursor: pointer;
+         
+        }
+        #imglogo{
+            width: 70px;
+            transform: scale(1.3);
+        }
+        ul {
+            flex: 1;
+            list-style: none;
+            text-align: center;
+        }
+        ul li {
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
+            color: black;
+            font-size: 25px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #75b1cd;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img id = "imglogo"src="/images/Designer-removebg-preview.png" alt="Find Rail">
+        </div>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="about.html">About</a>
+            </li>
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+        </ul>
+            
+    </div>
+    <div class="container">
+        <h1 class="mt-5 center">PNR Search Result</h1>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="card mb-12">
+                    <div class="card-body">
+                        <h5 class="card-title">Train Number: <%= trainData['response2'].trainNumber %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Train Name: <%= trainData['response2'].trainName %></h6>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="card-text">Number of Stops:</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text text-right"><%= trainData['response2'].numberOfStops %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="card-text">Train Type:</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text text-right"><%= trainData['response2'].trainTypeCode %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="card-text">Distance:</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text text-right"><%= trainData['response2'].distance %> km</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="card-text">Average Speed:</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text text-right"><%= trainData['response2'].avgSpeed %> km/h</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="card-text">Has Pantry:</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text text-right"><%= trainData['response2'].hasPantry ? 'Yes' : 'No' %></p>
+                            </div>
+                        </div>
+                        
+                        
+
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="card-subtitle mb-2 text-muted">Stations:</h6>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="list-group">
+                                    <% trainData['response1'].schedule.forEach(station => { %>
+                                        <% if(station.platform != null) { %>
+                                            <li class="list-group-item">
+                                                <%= station.stationName %> (<%= station.stationCode %>) - <%= station.arrivalTime %> - <%= station.departureTime %> (<%= station.distance %> km)
+                                            </li>
+                                        <% } %>
+                                    <% }); %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Between Stations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .card-subtitle {
+            font-size: 18px;
+            color: #6c757d;
+        }
+        .card-text {
+            font-size: 16px;
+        }
+        #imglogo{
+            width: 70px;
+            transform: scale(1.3);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            height: max-content;
+        }
+        .logo {
+            font-size: 30px;
+            font-weight: 700;
+            color: black;
+            text-transform: uppercase;
+            cursor: pointer;
+         
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #75b1cd;
+           
+            background-position: center;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        ul {
+            flex: 1;
+            list-style: none;
+            text-align: center;
+        }
+        ul li {
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
+            color: black;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img id = "imglogo"src="/images/Designer-removebg-preview.png" alt="Find Rail">
+        </div>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="about.html">About</a>
+            </li>
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+        </ul>
+            
+    </div>
+    <div class="container">
+        <h1 class="mt-5">Train Between Stations</h1>
+        <div class="row mt-3">
+            <% trainDetails.forEach(train => { %>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= train.trainNumber %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= train.trainName %></h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="card-text">Departure Time:</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text text-right"><%= train.stationFrom.departureTime %></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="card-text">Arrival Time:</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text text-right"><%= train.stationTo.arrivalTime %></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="card-text">Duration:</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text text-right"><%= train.duration %></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="card-text">Distance:</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text text-right"><%= train.distance %> km</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+<script>
+
+    
+    document.querySelectorAll('.card-body').forEach(cardBody => {
+            cardBody.addEventListener('click', () => {
+                const trainNumber = cardBody.closest('.card').querySelector('.card-title').textContent;
+                const url = `/trainno_search?trainno=${trainNumber}`;
+                window.location.href = url;
+            });
+    });
+
+</script>
+</html>
