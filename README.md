@@ -10,8 +10,8 @@ Chuk-Chuk is a web-based application for tracking Indian Railway trains using th
 
 ## Features
 
-- Retrieve live status of any train by providing its train number.
-- View details such as train name, current station, scheduled arrival and departure times, current status, and more.
+- Retrieve the live status of any train by providing its train number.
+- View details such as train name, current station, scheduled arrival and departure times, and current status.
 - Get updates on delays, expected arrival times, and platform information (if available).
 
 ## Technologies Used
@@ -36,7 +36,7 @@ Chuk-Chuk is a web-based application for tracking Indian Railway trains using th
 
 ## Credits
 
-- Developed by [Your Name] - [Your GitHub Profile](https://github.com/your_profile)
+- Developed by Agastya Kumar Yadav - [Your GitHub Profile](https://github.com/your_profile)
 
 ## License
 
