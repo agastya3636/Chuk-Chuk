@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,23 +16,27 @@
             background-color: rgba(255, 255, 255, 0.8);
             height: max-content;
         }
+
         .logo {
             font-size: 30px;
             font-weight: 700;
             color: black;
             text-transform: uppercase;
             cursor: pointer;
-         
+
         }
-        #imglogo{
+
+        #imglogo {
             width: 70px;
             transform: scale(1.3);
         }
+
         ul {
             flex: 1;
             list-style: none;
             text-align: center;
         }
+
         ul li {
             display: inline-block;
             margin: 0 20px;
@@ -38,10 +44,12 @@
             color: black;
             font-size: 25px;
         }
+
         a {
             text-decoration: none;
             color: black;
         }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -49,12 +57,48 @@
             background-color: #75b1cd;
             background-position: center;
         }
+
+        table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  border: none;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #eee;
+}
+
+td {
+  word-break: break-all;
+}
+
+        
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <div class="logo">
-            <img id = "imglogo"src="/images/Designer-removebg-preview.png" alt="Find Rail">
+            <img id="imglogo" src="/images/logo.webp" alt="Find Rail">
         </div>
         <ul>
             <li>
@@ -67,83 +111,97 @@
                 <a href="contact.html">Contact</a>
             </li>
         </ul>
-            
+
     </div>
     <div class="container">
-        <h1 class="mt-5 center">PNR Search Result</h1>
+        <!-- <h1 class="mt-5 center">Train no Search Result</h1> -->
         <div class="row mt-3">
             <div class="col-md-12">
                 <div class="card mb-12">
                     <div class="card-body">
-                        <h5 class="card-title">Train Number: <%= trainData['response2'].trainNumber %></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Train Name: <%= trainData['response2'].trainName %></h6>
-                        
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-text">Number of Stops:</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="card-text text-right"><%= trainData['response2'].numberOfStops %></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-text">Train Type:</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="card-text text-right"><%= trainData['response2'].trainTypeCode %></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-text">Distance:</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="card-text text-right"><%= trainData['response2'].distance %> km</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-text">Average Speed:</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="card-text text-right"><%= trainData['response2'].avgSpeed %> km/h</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-text">Has Pantry:</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="card-text text-right"><%= trainData['response2'].hasPantry ? 'Yes' : 'No' %></p>
-                            </div>
-                        </div>
-                        
-                        
+                        <div class="container1">
+                            <h1>Train Information</h1>
 
-                        <div class="row">
-                            <div class="col-12">
-                                <h6 class="card-subtitle mb-2 text-muted">Stations:</h6>
-                            </div>
+                            <table>
+                                <tr>
+                                    <th>Train Number</th>
+                                    <td>
+                                        <%= trainData['response2'].trainNumber %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Train Name</th>
+                                    <td><%= trainData['response2'].trainName %></td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Stops</th>
+                                    <td><%= trainData['response2'].numberOfStops %></td>
+                                </tr>
+                                <tr>
+                                    <th>Train Type</th>
+                                    <td><%= trainData['response2'].trainTypeCode %></td>
+                                </tr>
+                                <tr>
+                                    <th>Available Classes</th>
+                                    <td><%= trainData['response2'].availableClasses %></td>
+                                </tr>
+                                <tr>
+                                    <th>Distance</th>
+                                    <td><%= trainData['response2'].distance %></td>
+                                </tr>
+                                <tr>
+                                    <th>Average Speed</th>
+                                    <td><%= trainData['response2'].avgSpeed %></td>
+                                </tr>
+                                <tr>
+                                    <th>Has Pantry</th>
+                                    <td><%= trainData['response2'].hasPantry %></td>
+                                </tr>
+                            </table>
+                            <br>
+                            <br>
+
+                            <h2>Stations</h2>
+
+                            <table>
+                                <tr>
+                                    <th>Station</th>
+                                    <th>Arrival Time</th>
+                                    <th>Departure Time</th>
+                                    <th>Distance from Origin (km)</th>
+                                </tr>
+                                
+                                    <% trainData['response1'].schedule.forEach(station=> { %>
+                                        <% if(station.platform !=null) { %>
+                                            <tr>
+                                            <td>
+                                                <%= station.stationName %> (<%= station.stationCode %>)
+                                            </td>
+                                            <td>
+                                                <%= station.arrivalTime %>
+                                            </td>
+                                            <td>
+                                                <%= station.departureTime %>
+
+                                            </td>
+                                            <td>
+                                                <%= station.distance %> km
+                                            </td>
+                                            </tr>
+                
+                                            <% } %>
+                                                <% }); %>
+                                
+                                
+
+                            </table>
                         </div>
-        
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class="list-group">
-                                    <% trainData['response1'].schedule.forEach(station => { %>
-                                        <% if(station.platform != null) { %>
-                                            <li class="list-group-item">
-                                                <%= station.stationName %> (<%= station.stationCode %>) - <%= station.arrivalTime %> - <%= station.departureTime %> (<%= station.distance %> km)
-                                            </li>
-                                        <% } %>
-                                    <% }); %>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>

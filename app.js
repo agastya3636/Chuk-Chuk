@@ -12,12 +12,13 @@ app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "veiws"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
+const port = process.env.PORT||5000
 
 const logrequest= (req,res,next)=>{
     console.log(`${new Date().toLocaleString()} Request made to ${req.originalUrl}`);
     next();
 }
-app.listen(5000, function () {
+app.listen(port, function () {
     console.log(__dirname);
 });
 app.use(logrequest);
@@ -118,6 +119,31 @@ app.get("/trainno_search", async function (req, res) {
         trainData['response2']    = response2.data[0];
         console.log(trainData)
         res.render("trainno", { trainData });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post("/pnr_search", async function (req, res) {
+    try {
+        let pnr = req.body.pnr;
+        console.log(pnr)
+       const options = {
+  method: 'GET',
+  url: 'https://indianrailways.p.rapidapi.com/index.php',
+  qs: pnr,
+  headers: {
+    'X-RapidAPI-Key': '518bb0fbcemshf77511bd22517bfp19a6f0jsn8b2573d18947',
+    'X-RapidAPI-Host': 'indianrailways.p.rapidapi.com'
+  }
+};
+
+        const response = await request(options);
+        const pnrData = response.data;
+        console.log(pnrData)
+        res.send(pnrData)
+        // res.render("pnr", { pnrData });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");

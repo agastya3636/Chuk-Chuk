@@ -1,4 +1,4 @@
-const uri = "mongodb+srv://22cs3003:rFhm1QhvCuy47eoR@chukchuk.mfx9om4.mongodb.net/";
+const uri = process.env.DBURL||'mongodb+srv://22cs3003:rFhm1QhvCuy47eoR@chukchuk.mfx9om4.mongodb.net/';
 // dotenv.config({path:'C:\Users\agast\OneDrive\Desktop\infernocoders\config.env'});
 
 
